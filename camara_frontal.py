@@ -12,7 +12,7 @@ while(True):
     ret, frame = cap.read()
 
     # Escribir el frame en el video de salida
-  #  out.write(frame)
+    out.write(frame)
 
     # Mostrar el frame en una ventana
     cv2.imshow('Camara Frontal',frame)

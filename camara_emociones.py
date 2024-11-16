@@ -3,6 +3,9 @@ import deepface
 import deepface.DeepFace    
 
 capture = cv2.VideoCapture(0)
+# Definir el codec y crear un VideoWriter
+fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+out = cv2.VideoWriter('salida_emociones.mp4', fourcc, 20.0, (640, 480))
 
 face_model = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
@@ -31,6 +34,8 @@ while(True):
                         2,3)  
                
         cv2.rectangle(frame, (x, y), (x + width, y + height), (0, 255, 0), 2)
+    
+    out.write(frame)
 
     cv2.imshow('Video de emociones',frame)
 
@@ -40,4 +45,5 @@ while(True):
 
 # Cuando todo haya terminado, liberamos la captura
 capture.release()
+out.release()
 cv2.destroyAllWindows()
